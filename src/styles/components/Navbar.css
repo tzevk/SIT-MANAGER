@@ -1,0 +1,152 @@
+.navbar {
+  background-color: #2E3093;
+  color: white;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 20px;
+  height: 60px;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.navbar-item {
+  margin: 0;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FAE452;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #FAE452;
+  color: #2E3093;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.user-name {
+  color: white;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.user-role {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-size: 12px;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .navbar-menu {
+    gap: 20px;
+  }
+  
+  .navbar-link {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar-menu {
+    gap: 15px;
+  }
+  
+  .navbar-link {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  
+  .navbar-container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-center {
+    display: none;
+  }
+  
+  .navbar-container {
+    justify-content: space-between;
+  }
+}

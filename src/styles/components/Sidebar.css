@@ -1,0 +1,181 @@
+.sidebar {
+  position: fixed;
+  top: 60px; /* Below the navbar */
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 70px; /* Collapsed by default */
+  height: calc(100vh - 60px);
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  transition: width 0.3s ease;
+  z-index: 999;
+  overflow: visible;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar:hover {
+  width: 250px; /* Expand on hover */
+  overflow-x: hidden;
+}
+
+.sidebar-header {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.sidebar-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.sidebar:hover .sidebar-logo {
+  width: 120px;
+  height: auto;
+  max-height: 50px;
+}
+
+.sidebar-nav {
+  padding: 20px 0;
+}
+
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-item {
+  margin: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar-item:last-child {
+  border-bottom: none;
+  border-top: 2px solid #e0e0e0;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  justify-content: flex-start;
+}
+
+.sidebar-link:hover {
+  background-color: #f8f9fa;
+  border-left-color: #2E3093;
+  color: #2E3093;
+}
+
+.sidebar-link:hover .sidebar-icon {
+  color: #2E3093;
+}
+
+.sidebar-link.active {
+  background-color: #2E3093;
+  color: white;
+  border-left-color: #FAE452;
+}
+
+.sidebar-link.active .sidebar-icon {
+  color: white;
+}
+
+/* Logout button styling */
+.sidebar-button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.sidebar-button:hover {
+  background-color: #f8f9fa;
+  border-left-color: #dc3545;
+  color: #dc3545;
+}
+
+.sidebar-button:hover .sidebar-icon {
+  color: #dc3545;
+}
+
+.sidebar-icon {
+  font-size: 16px;
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2E3093;
+}
+
+/* Icon definitions using CSS content - relevant professional icons */
+.icon-menu::before { content: "☰"; }
+.icon-dashboard::before { content: "⊞"; } /* Dashboard - window/grid icon */
+.icon-library::before { content: "⊡"; } /* Library - book/square icon */
+.icon-role::before { content: "♦"; } /* Role Rights - diamond/authority */
+.icon-settings::before { content: "⚙"; } /* Settings - gear icon */
+.icon-logout::before { content: "↪"; } /* Logout - exit arrow */
+
+.sidebar-label {
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-left: -12px;
+}
+
+.sidebar:hover .sidebar-label {
+  opacity: 1;
+  margin-left: 0;
+}
+
+.sidebar:hover .sidebar-link {
+  padding: 10px 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+  }
+  
+  .sidebar-label {
+    display: none;
+  }
+  
+  .sidebar-link {
+    padding: 12px 23px;
+    justify-content: center;
+  }
+  
+  .sidebar-icon {
+    margin-right: 0;
+  }
+}
