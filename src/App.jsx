@@ -4,6 +4,9 @@ import Dashboard from './pages/Dashboard'
 import Discipline from './pages/Discipline'
 import Inquiry from './pages/Inquiry'
 import AddInquiry from './pages/AddInquiry'
+import OnlineAdmission from './pages/OnlineAdmission'
+import Admission from './pages/Admission'
+import PersonalInfo from './pages/PersonalInfo'
 import './styles/base/global.css'
 
 function App() {
@@ -15,6 +18,9 @@ function App() {
         <Route path="/discipline" element={<Discipline />} />
         <Route path="/inquiry" element={<Inquiry />} />
         <Route path="/add-inquiry" element={<AddInquiry />} />
+        <Route path="/online-admission" element={<OnlineAdmission />} />
+        <Route path="/admission" element={<Admission />} />
+        <Route path="/personal-info" element={<PersonalInfo />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>

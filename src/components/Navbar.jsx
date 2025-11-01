@@ -159,10 +159,7 @@ export default function Navbar() {
     }
   ];
 
-  // Split menu items for left and right sides
-  const midPoint = Math.ceil(menuItems.length / 2);
-  const leftMenuItems = menuItems.slice(0, midPoint);
-  const rightMenuItems = menuItems.slice(midPoint);
+
 
   const handleMouseEnter = (index) => {
     setActiveDropdown(index);
@@ -183,6 +180,12 @@ export default function Navbar() {
       case 'Inquiry':
         navigate('/inquiry');
         break;
+      case 'Online Admission':
+        navigate('/online-admission');
+        break;
+      case 'Admission':
+        navigate('/admission');
+        break;
       default:
         console.log(`Navigation to ${menuItem} not yet implemented`);
     }
@@ -191,9 +194,12 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="navbar-left">
+        <div className="navbar-logo">
+          <img src={logo} alt="SIT Logo" className="navbar-logo-img" />
+        </div>
+        <div className="navbar-menu-container">
           <ul className="navbar-menu">
-            {leftMenuItems.map((item, index) => (
+            {menuItems.map((item, index) => (
               <li 
                 key={index} 
                 className={`navbar-item ${item.submenu ? 'has-dropdown' : ''}`}
@@ -202,7 +208,6 @@ export default function Navbar() {
               >
                 <a href="#" className="navbar-link">
                   {item.name}
-                  {item.submenu && <span className="dropdown-indicator">•</span>}
                 </a>
                 {item.submenu && (
                   <ul className={`dropdown-menu ${activeDropdown === index ? 'show' : ''}`}>
@@ -224,49 +229,6 @@ export default function Navbar() {
                 )}
               </li>
             ))}
-          </ul>
-        </div>
-        <div className="navbar-center">
-          <div className="navbar-logo">
-            <img src={logo} alt="SIT Logo" className="navbar-logo-img" />
-          </div>
-        </div>
-        <div className="navbar-right">
-          <ul className="navbar-menu">
-            {rightMenuItems.map((item, index) => {
-              const rightIndex = index + leftMenuItems.length; // Adjust index for right side
-              return (
-                <li 
-                  key={rightIndex} 
-                  className={`navbar-item ${item.submenu ? 'has-dropdown' : ''}`}
-                  onMouseEnter={() => handleMouseEnter(rightIndex)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <a href="#" className="navbar-link">
-                    {item.name}
-                    {item.submenu && <span className="dropdown-indicator">•</span>}
-                  </a>
-                  {item.submenu && (
-                    <ul className={`dropdown-menu ${activeDropdown === rightIndex ? 'show' : ''}`}>
-                      {item.submenu.map((subItem, subIndex) => (
-                        <li key={subIndex} className="dropdown-item">
-                          <a 
-                            href="#" 
-                            className="dropdown-link"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleMenuClick(subItem);
-                            }}
-                          >
-                            {subItem}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              );
-            })}
           </ul>
         </div>
       </div>
