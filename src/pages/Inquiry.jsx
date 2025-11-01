@@ -88,8 +88,7 @@ export default function Inquiry() {
   };
 
   const handleAdd = () => {
-    console.log('Add new inquiry');
-    alert('Add new inquiry functionality');
+    navigate('/add-inquiry');
   };
 
   const handleView = (inquiry) => {
