@@ -4,13 +4,16 @@ import {
   MdLibraryBooks, 
   MdSupervisorAccount, 
   MdSettings, 
-  MdExitToApp 
+  MdExitToApp,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowRight,
+  MdSchool
 } from "react-icons/md";
-import logo from "../assets/logo.png";
 import "../styles/components/Sidebar.css";
 
 export default function Sidebar() {
   const [activeItem, setActiveItem] = useState("dashboard");
+  const [expandedMenus, setExpandedMenus] = useState({});
 
   useEffect(() => {
     const sidebar = document.querySelector('.sidebar');
@@ -44,6 +47,13 @@ export default function Sidebar() {
     window.location.href = "/login";
   };
 
+  const toggleSubmenu = (itemId) => {
+    setExpandedMenus(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
+
   const sidebarItems = [
     { 
       id: "dashboard", 
@@ -54,8 +64,38 @@ export default function Sidebar() {
     { 
       id: "library", 
       icon: MdLibraryBooks, 
-      label: "Library Management", 
-      path: "/library" 
+      label: "Library Management",
+      hasSubmenu: true,
+      submenu: [
+        {
+          id: "book-issue",
+          label: "Book Issue",
+          path: "/library/book-issue"
+        },
+        {
+          id: "return-book", 
+          label: "Return Book",
+          path: "/library/return-book"
+        }
+      ]
+    },
+    { 
+      id: "training", 
+      icon: MdSchool, 
+      label: "Employee Training",
+      hasSubmenu: true,
+      submenu: [
+        {
+          id: "training-plan",
+          label: "Employee Training Plan",
+          path: "/training/plan"
+        },
+        {
+          id: "training-record", 
+          label: "Employee Training Record",
+          path: "/training/record"
+        }
+      ]
     },
     { 
       id: "role", 
@@ -80,20 +120,15 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-header">
-        <div className="sidebar-brand">
-          <img src={logo} alt="SIT Logo" className="sidebar-logo" />
-        </div>
-      </div>
-      
       <nav className="sidebar-nav">
         <ul className="sidebar-menu">
           {sidebarItems.map((item, index) => {
             const IconComponent = item.icon;
             const isActive = activeItem === item.id;
+            const isExpanded = expandedMenus[item.id];
             
             return (
-              <li key={index} className="sidebar-item">
+              <li key={index} className={`sidebar-item ${item.hasSubmenu ? 'has-submenu' : ''}`}>
                 {item.onClick ? (
                   <button 
                     onClick={item.onClick} 
@@ -102,6 +137,35 @@ export default function Sidebar() {
                     <IconComponent className="sidebar-icon" />
                     <span className="sidebar-label">{item.label}</span>
                   </button>
+                ) : item.hasSubmenu ? (
+                  <>
+                    <button 
+                      onClick={() => toggleSubmenu(item.id)}
+                      className={`sidebar-link sidebar-button ${isActive ? 'active' : ''}`}
+                    >
+                      <IconComponent className="sidebar-icon" />
+                      <span className="sidebar-label">{item.label}</span>
+                      {isExpanded ? 
+                        <MdKeyboardArrowDown className="submenu-arrow" /> : 
+                        <MdKeyboardArrowRight className="submenu-arrow" />
+                      }
+                    </button>
+                    {isExpanded && (
+                      <ul className="sidebar-submenu">
+                        {item.submenu.map((subItem, subIndex) => (
+                          <li key={subIndex} className="sidebar-subitem">
+                            <a 
+                              href={subItem.path}
+                              className="sidebar-sublink"
+                              onClick={() => setActiveItem(subItem.id)}
+                            >
+                              <span className="sidebar-sublabel">{subItem.label}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
                 ) : (
                   <a 
                     href={item.path} 

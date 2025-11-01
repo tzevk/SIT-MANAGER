@@ -22,39 +22,8 @@
   transition-delay: 300ms; /* Delay collapse to prevent flicker */
 }
 
-.sidebar-header {
-  padding: 20px 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar-brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.sidebar-logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  transition: all 0.3s ease;
-  background: #FDFDFD;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.sidebar:hover .sidebar-logo {
-  width: 140px;
-  height: auto;
-  max-height: 60px;
-}
-
 .sidebar-nav {
-  padding: 10px 0;
+  padding: 20px 0 10px 0;
   flex: 1;
 }
 
@@ -126,8 +95,8 @@
 }
 
 .sidebar-button:hover {
-  background-color: rgba(220, 38, 38, 0.1);
-  color: #dc2626;
+  background-color: rgba(250, 228, 82, 0.1);
+  color: #FAE452;
   transform: translateX(2px);
 }
 
@@ -212,4 +181,73 @@
     justify-content: center;
     padding: 12px 16px;
   }
+}
+
+/* Submenu Styles */
+.sidebar-item.has-submenu {
+  position: relative;
+}
+
+.submenu-arrow {
+  margin-left: auto;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  opacity: 0;
+}
+
+.sidebar:hover .submenu-arrow {
+  opacity: 1;
+}
+
+.sidebar-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: 4px 12px 8px 12px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.sidebar-item.has-submenu .sidebar-submenu {
+  max-height: 200px;
+}
+
+.sidebar-subitem {
+  margin: 0;
+}
+
+.sidebar-sublink {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  border-radius: 6px;
+  margin: 2px 4px;
+}
+
+.sidebar-sublink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FAE452;
+  padding-left: 20px;
+}
+
+.sidebar-sublabel {
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .sidebar-sublabel {
+  opacity: 1;
+}
+
+/* Hide submenu when sidebar is collapsed */
+.sidebar:not(:hover) .sidebar-submenu {
+  display: none;
 }
