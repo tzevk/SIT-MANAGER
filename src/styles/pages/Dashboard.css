@@ -6,7 +6,7 @@
 
 .dashboard-main {
   margin-top: 60px; /* Account for fixed navbar height */
-  margin-left: 70px; /* Account for collapsed sidebar width */
+  margin-left: 90px; /* Account for collapsed sidebar width */
   padding: 20px;
   transition: margin-left 0.3s ease;
 }

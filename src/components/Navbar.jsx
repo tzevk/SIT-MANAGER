@@ -7,8 +7,6 @@ export default function Navbar() {
     "Admission Activity",
     "Daily Activities",
     "Report",
-    "Library Management",
-    "Role Right",
     "Employee Training",
     "Account Master",
     "Utility",

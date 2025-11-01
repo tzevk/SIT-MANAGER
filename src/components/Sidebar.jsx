@@ -1,21 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { 
+  MdDashboard, 
+  MdLibraryBooks, 
+  MdSupervisorAccount, 
+  MdSettings, 
+  MdExitToApp 
+} from "react-icons/md";
 import logo from "../assets/logo.png";
 import "../styles/components/Sidebar.css";
 
 export default function Sidebar() {
+  const [activeItem, setActiveItem] = useState("dashboard");
+
   useEffect(() => {
     const sidebar = document.querySelector('.sidebar');
     const dashboardMain = document.querySelector('.dashboard-main');
     
     const handleMouseEnter = () => {
       if (dashboardMain) {
-        dashboardMain.style.marginLeft = '250px';
+        dashboardMain.style.marginLeft = '240px';
       }
     };
     
     const handleMouseLeave = () => {
       if (dashboardMain) {
-        dashboardMain.style.marginLeft = '70px';
+        dashboardMain.style.marginLeft = '90px';
       }
     };
     
@@ -36,11 +45,37 @@ export default function Sidebar() {
   };
 
   const sidebarItems = [
-    { icon: "dashboard", label: "Dashboard", path: "/dashboard" },
-    { icon: "library", label: "Library Management", path: "/library" },
-    { icon: "role", label: "Role Right", path: "/role-right" },
-    { icon: "settings", label: "Settings", path: "/settings" },
-    { icon: "logout", label: "Logout", path: "#", onClick: handleLogout },
+    { 
+      id: "dashboard", 
+      icon: MdDashboard, 
+      label: "Dashboard", 
+      path: "/dashboard" 
+    },
+    { 
+      id: "library", 
+      icon: MdLibraryBooks, 
+      label: "Library Management", 
+      path: "/library" 
+    },
+    { 
+      id: "role", 
+      icon: MdSupervisorAccount, 
+      label: "Role Right", 
+      path: "/role-right" 
+    },
+    { 
+      id: "settings", 
+      icon: MdSettings, 
+      label: "Settings", 
+      path: "/settings" 
+    },
+    { 
+      id: "logout", 
+      icon: MdExitToApp, 
+      label: "Logout", 
+      path: "#", 
+      onClick: handleLogout 
+    },
   ];
 
   return (
@@ -53,21 +88,33 @@ export default function Sidebar() {
       
       <nav className="sidebar-nav">
         <ul className="sidebar-menu">
-          {sidebarItems.map((item, index) => (
-            <li key={index} className="sidebar-item">
-              {item.onClick ? (
-                <button onClick={item.onClick} className="sidebar-link sidebar-button">
-                  <span className={`sidebar-icon icon-${item.icon}`}></span>
-                  <span className="sidebar-label">{item.label}</span>
-                </button>
-              ) : (
-                <a href={item.path} className="sidebar-link">
-                  <span className={`sidebar-icon icon-${item.icon}`}></span>
-                  <span className="sidebar-label">{item.label}</span>
-                </a>
-              )}
-            </li>
-          ))}
+          {sidebarItems.map((item, index) => {
+            const IconComponent = item.icon;
+            const isActive = activeItem === item.id;
+            
+            return (
+              <li key={index} className="sidebar-item">
+                {item.onClick ? (
+                  <button 
+                    onClick={item.onClick} 
+                    className={`sidebar-link sidebar-button ${isActive ? 'active' : ''}`}
+                  >
+                    <IconComponent className="sidebar-icon" />
+                    <span className="sidebar-label">{item.label}</span>
+                  </button>
+                ) : (
+                  <a 
+                    href={item.path} 
+                    className={`sidebar-link ${isActive ? 'active' : ''}`}
+                    onClick={() => setActiveItem(item.id)}
+                  >
+                    <IconComponent className="sidebar-icon" />
+                    <span className="sidebar-label">{item.label}</span>
+                  </a>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </aside>
