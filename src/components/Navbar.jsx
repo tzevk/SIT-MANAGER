@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import "../styles/components/Navbar.css";
 
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const navigate = useNavigate();
 
   const menuItems = [
     {
@@ -170,6 +172,22 @@ export default function Navbar() {
     setActiveDropdown(null);
   };
 
+  const handleMenuClick = (menuItem) => {
+    // Convert menu item name to route
+    
+    // Handle specific menu items
+    switch(menuItem) {
+      case 'Discipline':
+        navigate('/discipline');
+        break;
+      case 'Inquiry':
+        navigate('/inquiry');
+        break;
+      default:
+        console.log(`Navigation to ${menuItem} not yet implemented`);
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -184,13 +202,20 @@ export default function Navbar() {
               >
                 <a href="#" className="navbar-link">
                   {item.name}
-                  {item.submenu && <span className="dropdown-arrow">▼</span>}
+                  {item.submenu && <span className="dropdown-indicator">•</span>}
                 </a>
                 {item.submenu && (
                   <ul className={`dropdown-menu ${activeDropdown === index ? 'show' : ''}`}>
                     {item.submenu.map((subItem, subIndex) => (
                       <li key={subIndex} className="dropdown-item">
-                        <a href="#" className="dropdown-link">
+                        <a 
+                          href="#" 
+                          className="dropdown-link"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleMenuClick(subItem);
+                          }}
+                        >
                           {subItem}
                         </a>
                       </li>
@@ -219,13 +244,20 @@ export default function Navbar() {
                 >
                   <a href="#" className="navbar-link">
                     {item.name}
-                    {item.submenu && <span className="dropdown-arrow">▼</span>}
+                    {item.submenu && <span className="dropdown-indicator">•</span>}
                   </a>
                   {item.submenu && (
                     <ul className={`dropdown-menu ${activeDropdown === rightIndex ? 'show' : ''}`}>
                       {item.submenu.map((subItem, subIndex) => (
                         <li key={subIndex} className="dropdown-item">
-                          <a href="#" className="dropdown-link">
+                          <a 
+                            href="#" 
+                            className="dropdown-link"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleMenuClick(subItem);
+                            }}
+                          >
                             {subItem}
                           </a>
                         </li>
