@@ -186,6 +186,12 @@ export default function Navbar() {
       case 'Admission':
         navigate('/admission');
         break;
+      case 'Student':
+        navigate('/student');
+        break;
+      case 'Corporate Inquiry':
+        navigate('/corporate-inquiry');
+        break;
       default:
         console.log(`Navigation to ${menuItem} not yet implemented`);
     }

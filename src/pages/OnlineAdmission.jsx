@@ -162,61 +162,47 @@ export default function OnlineAdmission() {
         {/* Search and Filter Section */}
         <div className="search-section">
           <div className="search-controls">
-            <div className="search-group">
-              <div className="search-input-container">
-                <MdSearch className="search-icon" />
-                <input
-                  type="text"
-                  placeholder="Search admissions..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="search-input"
-                />
-              </div>
-              
-              <div className="filter-container">
-                <select
-                  value={filterBy}
-                  onChange={(e) => setFilterBy(e.target.value)}
-                  className="filter-select"
-                >
-                  <option value="all">All Fields</option>
-                  <option value="name">Name</option>
-                  <option value="email">Email</option>
-                  <option value="mobile">Mobile</option>
-                  <option value="batch">Batch Code</option>
-                  <option value="status">Status</option>
-                </select>
-              </div>
-            </div>
+            <input
+              type="text"
+              placeholder="Search admissions..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
             
-            <div className="action-buttons">
-              <button 
-                onClick={handleSearch}
-                className="btn-search"
-                title="Search"
-              >
-                <MdSearch />
-                Search
-              </button>
-              
-              <button 
-                onClick={handleClear}
-                className="btn-clear"
-                title="Clear"
-              >
-                Clear
-              </button>
-              
-              <button 
-                onClick={handleExport}
-                className="btn-export"
-                title="Export Data"
-              >
-                <MdFileDownload />
-                Export
-              </button>
-            </div>
+            <select
+              value={filterBy}
+              onChange={(e) => setFilterBy(e.target.value)}
+              className="filter-select"
+            >
+              <option value="all">All Fields</option>
+              <option value="name">Name</option>
+              <option value="email">Email</option>
+              <option value="mobile">Mobile</option>
+              <option value="batch">Batch Code</option>
+              <option value="status">Status</option>
+            </select>
+            
+            <button 
+              onClick={handleSearch}
+              className="btn-search"
+            >
+              Search
+            </button>
+            
+            <button 
+              onClick={handleClear}
+              className="btn-clear"
+            >
+              Clear
+            </button>
+            
+            <button 
+              onClick={handleExport}
+              className="btn-export"
+            >
+              Export
+            </button>
           </div>
         </div>
 
